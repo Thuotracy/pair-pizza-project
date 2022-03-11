@@ -1,13 +1,382 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+  
+  <title>Pizza website</title>
   <meta charset="utf-8">
-  <title>PairProject</title>
-  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
 </head>
-<body>
-  <app-root></app-root>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand hidden-xs" href="#myPage"><img src="data:image/jpeg;base64,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"></a>
+      <a class="navbar-brand" href="#myPage">Pizza website</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#menu">MENU</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="#about">ABOUT US</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="https://media.istockphoto.com/photos/tasty-pepperoni-pizza-and-cooking-ingredients-tomatoes-basil-on-black-picture-id1083487948?k=20&m=1083487948&s=612x612&w=0&h=ROZ5t1K4Kjt5FQteVxTyzv_iqFcX8aqpl7YuA1Slm7w=" alt="Pizza1" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>Authentic Kenyan Pizza</h3>
+          <p>Our Pizza chef is certified</p>
+        </div>      
+      </div>
+
+      <div class="item">
+        <img src="https://assets.bonappetit.com/photos/5cd32ef32c3537178c3c8f03/6:9/w_1630,h_2445,c_limit/BA-Perfect-Pizza.jpg" alt="Dough" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>Freshly prepared every day</h3>
+          <p>We let all dough rise for 24-48 hours, resulting in a very light and digestible pizza. (No bloating after!)</p>
+        </div>      
+      </div>
+    
+      <div class="item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ64IkU9DJwfhiUapGJGpKh2hJ8dqcYjqRU_A&usqp=CAU" alt="Pizza2" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>Highest quality ingredients</h3>
+          <p>We use fresh and original products.</p>
+        </div>      
+      </div>
+      
+      <div class="item">
+        <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F9%2F2021%2F06%2F15%2Fmozzarella-pizza-margherita-FT-RECIPE0621.jpg&q=60" alt="Oven" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>Electric Oven</h3>
+          <p>We cook all pizzas in an 850 degree</p> 
+        </div>      
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</header>
+
+<!-- Container (MENU Section) -->
+<section id="menu" class="bg-1">
+  <div class="container">
+    <h3 class="text-center slideanimate">PIZZA MENU</h3>
+    <p class="text-center slideanimate">We'll make you some real Kenyan pizza.<br> Choose your Pizza below and order for collection!</p>
+    
+    <div class="row display-flex text-center">
+      <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hvr-grow slideanim">
+        <div class="thumbnail">
+          <img src="https://img.kidspot.com.au/pZnR2nZu/kk/2015/03/hawaiian-pizza-recipe-605894-2.jpg" alt="Margherita">
+          <p><strong>Pepporoni Pizza Ksh.1200</strong></p>
+          <p data-toggle="tooltip" title="Imported tomato sauce, Homemade mozzarella, Basil, Pecorino romano">Toppings Info <i class="fa fa-info-circle"></i></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Order</button>
+        </div>
+      </article>
+      <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hvr-grow slideanim">
+        <div class="thumbnail">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIibPbOeDQQscm9g-fDNdCvROokQJukg8nYQ&usqp=CAU" alt="Bianca">
+          <p><strong>Chicken Hawaiian Ksh.1000</strong></p>
+          <p data-toggle="tooltip" title="Homemade mozzarella, ricotta, Pecorino romano">Toppings Info <i class="fa fa-info-circle"></i></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Order</button>
+        </div>
+      </article>
+      <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hvr-grow slideanim">
+        <div class="thumbnail">
+          <img src="https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900" alt="Marinara">
+          <p><strong>Cheese Pizza Ksh.800</strong></p>
+          <p data-toggle="tooltip" title="Imported tomato sauce, Oregano, Garlic, Pecorino romano">Toppings Info <i class="fa fa-info-circle"></i></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Order</button>
+        </div>
+      </article>
+      <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hvr-grow slideanim">
+        <div class="thumbnail">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg" alt="Montanara">
+          <p><strong>Meat Dulex Ksh.1550</strong></p>
+          <p data-toggle="tooltip" title="Lightly fried dough, Homemade marinara sauce, Homemade mozzarella, Pecorino romano">Toppings Info <i class="fa fa-info-circle"></i></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Order</button>
+        </div>
+      </article>
+      <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hvr-grow slideanim">
+        <div class="thumbnail">
+          <img src="https://www.vegrecipesofindia.com/wp-content/uploads/2020/11/pizza-recipe-2-500x375.jpg" alt="AllaVodka" >
+          <p><strong>Chiicken Macon BBQ Ksh.1300</strong></p>
+          <p data-toggle="tooltip" title="Vodka sauce, Homemade mozzarella, Basil, Pecorino romano">Toppings Info <i class="fa fa-info-circle"></i></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Order</button>
+        </div>
+      </article>
+      <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hvr-grow slideanim">
+        <div class="thumbnail">
+          <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="Melanzane">
+          <p><strong>Veg Feast Ksh.700</strong></p>
+          <p data-toggle="tooltip" title="Imported tomato sauce, Homemade mozzarella, Eggplant, Ricotta, Pecorino romano">Toppings Info <i class="fa fa-info-circle"></i></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Order</button>
+        </div>
+      </article>
+      <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hvr-grow slideanim">
+        <div class="thumbnail">
+          <img src="https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/216054.jpg" alt="Pesto">
+          <p><strong>Chicken ans Beef Pepperoni Ksh.1350</strong></p>
+          <p data-toggle="tooltip" title="Homemade pesto, Homemade mozzarella, Asiago, Pecorino romano (No olive oil)">Toppings Info <i class="fa fa-info-circle"></i></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Order</button>
+        </div>
+      </article>
+      <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hvr-grow slideanim">
+        <div class="thumbnail">
+          <img src="https://images.aws.nestle.recipes/resized/4274048cd5f17c49dfee280f77a3739d_Cheese-Pizza_HB-2_944_531.jpg" alt="Broccoli Rabe Sausage">
+          <p><strong>Broccoli Sausage Ksh.950</strong></p>
+          <p data-toggle="tooltip" title="Imported tomato sauce, Homemade mozzarella, Broccoli rabe sausage, Asiago, Basil, Pecorino romano">Toppings Info <i class="fa fa-info-circle"></i></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Order</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+  
+  <!-- Modal -->
+  <section class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4><span class="glyphicon glyphicon-shopping-cart"></span>Order</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form">
+            <div class="form-group"><label for="qty">QUANTITY</label>
+              <input type="number" class="form-control" id="qty" placeholder="How many?">
+            </div>
+            <div class="form-group"><label>SIZE</label>
+              <div class="radio">
+                <label class="radio-inline"><input type="radio" name="optradio">Small 9"</label>
+                <label class="radio-inline"><input type="radio" name="optradio">Medium 12"</label>
+                <label class="radio-inline"><input type="radio" name="optradio">Large 16"</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="sel1">CRUST</label>
+                <select class="form-control" id="sel1">
+                  <option>Original Hand Tossed</option>
+                  <option>Thin Crust</option>
+                  <option>Deep Pan</option>
+                </select>
+            </div>
+              <button type="submit" class="btn btn-block">ADD 
+                <span class="glyphicon glyphicon-ok"></span>
+              </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span> Cancel
+          </button>
+          <p>Need <a href="#">help?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Container (Contact Section) -->
+<section id="contact" class="container">
+  <h3 class="text-center slideanim">Contact</h3>
+  <p class="text-center slideanim"><em>Send us your feedback!</em></p>
+
+  <div class="row">
+    <article class="col-md-4">
+      <p class="slideanim">Call and place an order for collection</p>
+      <p class="slideanim"><span class="glyphicon glyphicon-map-marker"></span>1 Main Street, Nairobi, Kenya</p>
+      <p class="slideanim"><span class="glyphicon glyphicon-phone"></span>Phone: +254 700 666 775</p>
+      <p class="slideanim"><span class="glyphicon glyphicon-envelope"></span>Email: mail@pizza.ke</p>
+    </article>
+    <article class="col-md-8">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control slideanim" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control slideanim" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+        </div>
+          <textarea class="form-control slideanim" id="subject" name="subject" placeholder="Subject" rows="1"></textarea>
+          <br>
+          <textarea class="form-control slideanim" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+          <br>
+        <div class="row">
+        <div class="col-md-12 form-group">
+          <button class="btn pull-right slideanim" type="submit">Send</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+
+<!-- Container (The About Section) -->
+<section id="about" class="container text-center">
+  <article>
+    <h3 class="slideanim">About</h3>
+    <p class="slideanim"><em>We love Pizza! Our Pizza Chef is a certified pizzaiolo of the Associazione Pizzaiuoli Napoletani</em></p>
+    <p class="slideanim">tracy Authentic Pizza Napoletana has been in business since 2021. Owner and pizzaiolo tracy is a a certified pizzaiolo of the Associazione Pizzaiuoli Napoletani (Association of Neapolitan Pizza-makers), and all of our pizzas are made according to Neapolitan tradition. We use only the highest-quality ingredients, including buffalo-milk mozzarella (Mozzarella di Bufala Campana D.O.P.) and San Marzano D.O.P. tomatoes imported from Naples as well as our fresh, home-made mozzarella. All pizzas are drizzled with 100% Italian extra-virgin olive oil and then baked to perfection at 850 degrees in a Mario Acunto wood-fired brick oven from Naples. The finished product is a pizza whose taste will bring you back to Italy. We recommend our three specialties - the Margherita D.O.P., Mom's, and La Saporita. 
+  </p>
+    <br>
+    <br>
+  </article>
+  <div class="row display-flex">
+    <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 slideanim">
+      <p class="text-center"><strong>Association of Neapolitan Pizzamakers</strong></p><br>
+      <a href="#demo" data-toggle="collapse">
+        <img src="https://cropper.watch.aetnd.com/cdn.watch.aetnd.com/sites/2/2018/05/hungry-history-a-slice-of-history-pizza-through-the-ages-iStock_000018675576Large.jpg" class="img-circle collapse-info" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo" class="collapse">
+        <p>Our Pizza Chef is a certified pizzaiolo of the Associazione Pizzaiuoli Napoletani (Association of Neapolitan Pizzamakers) and trained with Roberto Caporuscio of Don Antonio by Starita.</p>
+      </div>
+    </article>
+    <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 slideanim">
+      <p class="text-center"><strong>Buffalo-Milk Mozzarella</strong></p><br><br>
+      <a href="#demo2" data-toggle="collapse">
+        <img src="https://www.irishtimes.com/polopoly_fs/1.4245295.1588671124!/image/image.jpg_gen/derivatives/ratio_16x9_w1200/image.jpg" class="img-circle collapse-info" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo2" class="collapse">
+        <p>We offer buffalo mozzarella (Mozzarella di Bufala Campana D.O.P.) imported from the region around Naples as well as our own fresh mozzarella that we make daily in the kitchen of our store</p>
+      </div>
+    </article>
+    <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 slideanim">
+      <p class="text-center"><strong>Protected Designation of Origin (D.O.P.)</strong></p><br>
+      <a href="#demo3" data-toggle="collapse">
+        <img src="https://media.istockphoto.com/photos/pizza-margarita-with-cheese-top-view-isolated-on-white-background-picture-id1168754685?k=20&m=1168754685&s=612x612&w=0&h=XauWtcSx53Ey0yswLWggNGQi7gmTjba0TXloXO4NAIs=" class="img-circle collapse-info" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo3" class="collapse">
+        <p>The “D.O.P.” label protects various Italian foods and certifies that the product is of the highest quality and has undergone numerous inspections.</p>
+      </div>
+    </article>
+    <article class="col-xs-12 col-sm-6 col-md-4 col-lg-3 slideanim">
+      <p class="text-center"><strong>San Marzano D.O.P. Tomatoes</strong></p><br><br>
+      <a href="#demo4" data-toggle="collapse">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Mp52ZqHUHSMB-jrdNG8TdTfetkrM99ljYw&usqp=CAU" class="img-circle collapse-info" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo4" class="collapse">
+        <p>We use San Marzano D.O.P. tomatoes as well as other imported Italian tomatoes.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <section class="row">
+                <article class="col-sm-4">
+                    <h5 class="uppercase general-sub slideanim">Opening Hours</h5>
+                    <p class="inline-block slideanim">
+                        Monday - Saturday (Closed Sundays)<br>
+                        11:30am - 8:00pm<br>
+                    </p>
+                </article>
+                <article class="col-sm-4 ">
+                    <h5 class="uppercase general-sub slideanim">Address</h5>
+                    <p class="inline-block slideanim">
+                        1 Main Street, Nairobi, Kenya<br>
+                        Phone: +254 700 666 775<br>
+                        Email: mail@pizza.ke
+                    </p>
+                </article>
+                <article class="col-sm-4 ">
+                    <h5 class="uppercase general-sub slideanim">Social</h5>
+                    <ul class="list-inline social-links">
+                        <li><a target="_blank " href="# "><i class="fa fa-facebook slideanim"></i></a></li>
+                        <li><a target="_blank " href="# "><i class="fa fa-twitter slideanim"></i></a></li>
+                        <li><a target="_blank " href="# "><i class="fa fa-instagram slideanim"></i></a></li>
+                        <li><a target="_blank " href="# "><i class="fa fa-youtube slideanim"></i></a></li>
+                    </ul>
+                </article>
+            </section>
+</footer>
+
+<script>
+$(document).ready(function(){
+  // Initialize Tooltip
+  $('[data-toggle="tooltip"]').tooltip(); 
+  
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+   $(".slideanimate").each(function(){
+        $(this).stop().delay(1000).addClass("slide");
+    });
+  
+    $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+    
+      var winTop = $(window).scrollTop();
+      if (pos < winTop + 600) {
+        $(this).addClass("slide");
+      }
+    });
+    });
+    
+})
+
+</script>
+
 </body>
 </html>
